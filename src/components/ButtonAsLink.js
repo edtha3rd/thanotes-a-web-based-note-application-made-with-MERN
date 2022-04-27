@@ -1,18 +1,18 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 const ButtonAsLink = styled.button`
-    background: none;
-    color: #0077cc;
-    border: none;
-    padding: 0;
-    font: inherit;
-    text-decoration: underline;
-    cursor: pointer;
+  background: black;
+  color: #0077cc;
+  border: ridged 1px black;
+  border-radius: 10px;
+  padding: 5;
+  font: inherit;
+  cursor: pointer;
 
-    :hover,
-    :active {
-        color: #004499;
-    }
-`;
+  :hover,
+  :active {
+    color: #004499;
+  }
+`
 
-export default ButtonAsLink;
+export default ButtonAsLink

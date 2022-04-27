@@ -63,7 +63,7 @@ const ProfileForm = props => {
           type="text"
           id="phoneNumber"
           name="phoneNumber"
-          value={props.user.phoneNumber}
+          value={props.user.phoneNumber || ''}
           onChange={onChange}
         />
         <Button type="submit">Save</Button>

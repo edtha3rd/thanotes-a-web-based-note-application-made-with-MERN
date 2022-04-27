@@ -1,5 +1,5 @@
-import { createGlobalStyle } from 'styled-components';
-import normalize from 'normalize.css';
+import { createGlobalStyle } from 'styled-components'
+import normalize from 'normalize.css'
 
 export default createGlobalStyle`
   ${normalize}
@@ -18,7 +18,7 @@ export default createGlobalStyle`
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
       Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
     color: #fff;
-    background-color: #49494F;
+    background-color: #1F1E1E;
     line-height: 1.4;
   }
 
@@ -38,4 +38,4 @@ export default createGlobalStyle`
     overflow: auto;
     margin: 0 auto;
   }
-`;
+`

@@ -64,22 +64,40 @@ const Navigation = () => {
           </Link>
         </li>
         <li>
-          <Link to="/editprofile">
+          <Link to="/profile">
             <span aria-hidden="true" role="img">
               👤
+            </span>
+            Profile
+          </Link>
+        </li>
+        <li>
+          <Link to="/editprofile">
+            <span aria-hidden="true" role="img">
+              🖋️
             </span>
             Edit Profile
           </Link>
         </li>
         {data.currentUser.role === 'THEATER' ? (
-          <li>
-            <Link to="/catalog">
-              <span aria-hidden="true" role="img">
-                ❤
-              </span>
-              My Catalog
-            </Link>
-          </li>
+          <div>
+            <li>
+              <Link to="/catalog">
+                <span aria-hidden="true" role="img">
+                  ❤
+                </span>
+                My Catalog
+              </Link>
+            </li>
+            <li>
+              <Link to="/reservations">
+                <span aria-hidden="true" role="img">
+                  🎟️
+                </span>
+                Reservations
+              </Link>
+            </li>
+          </div>
         ) : (
           <div>
             <li>

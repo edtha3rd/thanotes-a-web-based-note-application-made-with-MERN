@@ -39,19 +39,6 @@ const MovieForm = props => {
 
   const { data = {} } = useQuery(GET_ME)
 
-  const processUpload = event => {
-    var output = document.getElementById('poster')
-    output.src = URL.createObjectURL(event.target.files[0])
-    console.log(output.src)
-    console.log(event.target.files[0].name)
-    setValue({
-      ...value,
-      [event.target.name]: event.target.files[0]
-    })
-    output.onload = function() {
-      URL.revokeObjectURL(output.src)
-    }
-  }
   const handleImage = result => {
     setValue({
       ...value,
@@ -103,14 +90,24 @@ const MovieForm = props => {
           value={value.year}
           onChange={onChange}
         />
-        {/* <TextArea
-            required
-            type="text"
-            name="content"
-            placeholder="Movie content"
-            value={value.content}
-            onChange={onChange}
-          /> */}
+        <TextArea
+          required
+          type="text"
+          name="synopsis"
+          rows={5}
+          placeholder="Movie Synopsis"
+          value={value.synopsis}
+          onChange={onChange}
+        />
+        <TextArea
+          required
+          type="text"
+          name="rating"
+          rows={1}
+          placeholder="'G','PG','PG-13','R','NC-17'"
+          value={value.rating}
+          onChange={onChange}
+        />
         <br />
         <WidgetLoader />
         <Widget

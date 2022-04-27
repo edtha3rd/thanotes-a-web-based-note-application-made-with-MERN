@@ -9,12 +9,13 @@ const MovieWrapper = styled.div`
   margin-bottom: 2em;
   padding-bottom: 2em;
   border-bottom: 1px solid #f5f4f0;
+  text-align: center;
 `
 
 const MovieFeed = ({ movies }) => {
   return (
     <div>
-      {movies.map((movie) => (
+      {movies.map(movie => (
         <MovieWrapper key={movie.id}>
           <Movie movie={movie} />
           <Link to={`movie/${movie.id}`}>Permalink</Link>

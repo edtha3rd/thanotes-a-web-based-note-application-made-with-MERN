@@ -15,6 +15,8 @@ import SignIn from './signin'
 import NewMovie from './new'
 import EditProfile from './editprofile'
 import EditMovie from './edit'
+import Profile from './profile'
+import Reservation from './reservations'
 import { IS_LOGGED_IN } from '../gql/query'
 
 // define our routes
@@ -29,6 +31,8 @@ const Pages = () => {
         <PrivateRoute path="/edit/:id" component={EditMovie} />
         <PrivateRoute path="/movie/:id" component={MoviePage} />
         <PrivateRoute path="/editprofile" component={EditProfile} />
+        <PrivateRoute path="/profile" component={Profile} />
+        <PrivateRoute path="/reservations" component={Reservation} />
         <Route path="/signup" component={SignUp} />
         <Route path="/signin" component={SignIn} />
       </Layout>

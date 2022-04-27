@@ -8,6 +8,9 @@ import MovieFeed from '../components/MovieFeed'
 import { GET_MOVIES } from '../gql/query'
 
 const Home = () => {
+  React.useEffect(() => {
+    document.title = 'Home - Tickets!'
+  })
   //query hook
   const { data, loading, error, fetchMore } = useQuery(GET_MOVIES)
 

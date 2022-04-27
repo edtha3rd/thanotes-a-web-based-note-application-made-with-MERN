@@ -16,10 +16,10 @@ const EditMovie = props => {
   //define our mutation
   const [editMovie] = useMutation(EDIT_MOVIE, {
     onCompleted: () => {
-      props.history.location(`/movie/${id}`)
+      props.history.push(`/movie/${id}`)
     }
   })
-  if (loading) return <p>'Loading...'</p>
+  if (loading) return <p>Loading...</p>
   if (error) return <p>Error editing!</p>
 
   return <MovieForm movie={data.movie} action={editMovie} />

@@ -1,12 +1,26 @@
 import { gql } from '@apollo/client'
 
 const NEW_MOVIE = gql`
-  mutation Mutation($title: String!, $year: String!, $poster: String) {
-    newMovie(title: $title, year: $year, poster: $poster) {
+  mutation Mutation(
+    $title: String!
+    $year: String!
+    $poster: String
+    $synopsis: String
+    $rating: String
+  ) {
+    newMovie(
+      title: $title
+      year: $year
+      poster: $poster
+      synopsis: $synopsis
+      rating: $rating
+    ) {
       id
       title
       year
       poster
+      synopsis
+      rating
       submittedBy {
         username
         id
@@ -21,8 +35,17 @@ const EDIT_MOVIE = gql`
     $title: String
     $year: String
     $poster: String
+    $synopsis: String
+    $rating: String
   ) {
-    editMovie(movieId: $movieId, title: $title, year: $year, poster: $poster) {
+    editMovie(
+      movieId: $movieId
+      title: $title
+      year: $year
+      poster: $poster
+      synopsis: $synopsis
+      rating: $rating
+    ) {
       id
       title
       year

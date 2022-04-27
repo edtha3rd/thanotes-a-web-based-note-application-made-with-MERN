@@ -41,7 +41,7 @@ const Header = props => {
 
   return (
     <HeaderBar>
-      <img src={logo} alt="Notedly Logo" height="40" />
+      <img src={logo} alt="Tickets!" height="40" />
       <LogoText>Tickets!</LogoText>
       {/*if logged in display logout link, else display sign in options */}
       <UserState>
@@ -62,8 +62,8 @@ const Header = props => {
           </ButtonAsLink>
         ) : (
           <p>
-            <Link to={'/signin'}>Sign In</Link> or{' '}
-            <Link to={'/signup'}>Sign Up</Link>
+            <ButtonAsLink to={'/signin'}>Sign In</ButtonAsLink> or{' '}
+            <ButtonAsLink to={'/signup'}>Sign Up</ButtonAsLink>
           </p>
         )}
       </UserState>

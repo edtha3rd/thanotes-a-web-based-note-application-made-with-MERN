@@ -8,6 +8,8 @@ const GET_MOVIES = gql`
         title
         year
         poster
+        synopsis
+        rating
         showingAt {
           id
           fullName
@@ -28,6 +30,8 @@ const GET_MOVIE = gql`
       title
       year
       poster
+      synopsis
+      rating
       submittedBy {
         username
         id
@@ -49,6 +53,8 @@ const GET_MY_MOVIES = gql`
       title
       year
       poster
+      synopsis
+      rating
       showingAt {
         fullName
         id
@@ -89,12 +95,24 @@ const GET_ME = gql`
         title
         year
         poster
+        synopsis
+        rating
       }
       catalogue {
         id
         title
         year
         poster
+      }
+      myReservations {
+        id
+        reservedBy {
+          username
+          email
+        }
+        seat
+        totalPrice
+        confirmationCode
       }
     }
   }

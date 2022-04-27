@@ -14,28 +14,29 @@ const StyledMovie = styled.article`
   max-width: 800px;
   margin: 0 auto;
 `
-//style the movie metadata
-const MetaData = styled.div`
-  @media (mix-width: 500px) {
-    display: flex;
-    align-items: top;
-  }
-`
-
-//add some space b/w avatar and meta info
-const MetaInfo = styled.div`
-  padding-right: 1em;
+const Main = styled.div`
+  text-align: center;
 `
 
 //align user actions to right on large screens
 const UserActions = styled.div`
   margin-left: auto;
+  text-align: center;
+  font-weight: 700;
 `
 
 const Poster = styled.img`
   height: 200px;
   width: auto;
 `
+
+const Synopsis = styled.p``
+
+const Title = styled.h2`
+  margin-block: 0;
+`
+
+const Top = styled.div``
 
 const Movie = ({ movie }) => {
   const { loading, error, data } = useQuery(IS_LOGGED_IN)
@@ -44,11 +45,17 @@ const Movie = ({ movie }) => {
   // if there is an error fetching the data, display an error message
   if (error) return <p>Error checking login status!</p>
   return (
-    <div>
+    <Main>
       <Poster src={movie.poster} />
-      <p>
-        {movie.title}, {movie.year}
-      </p>
+      <Top>
+        <Title>
+          {movie.title}, {movie.year}
+        </Title>{' '}
+        <br />
+        Rating: {movie.rating}
+        <h3>Synopsis:</h3>
+      </Top>
+      <Synopsis>{movie.synopsis}</Synopsis>
       {data.isLoggedIn ? (
         <UserActions>
           <MovieUser movie={movie} />
@@ -56,7 +63,7 @@ const Movie = ({ movie }) => {
       ) : (
         <UserActions></UserActions>
       )}
-    </div>
+    </Main>
   )
 }
 

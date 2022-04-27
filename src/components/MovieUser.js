@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { GET_ME } from '../gql/query'
 import FavoriteMovie from './FavoriteMovie'
 import DeleteMovie from './DeleteMovie'
+import ButtonAsLink from './ButtonAsLink'
 
 const MovieUser = props => {
   const { loading, error, data } = useQuery(GET_ME)
@@ -16,7 +17,7 @@ const MovieUser = props => {
     <React.Fragment>
       {data.currentUser.role === 'ADMIN' ? (
         <React.Fragment>
-          <Link to={`/edit/${props.movie.id}`}>Edit </Link>
+          <ButtonAsLink to={`/edit/${props.movie.id}`}>Edit </ButtonAsLink>{' '}
           <DeleteMovie movieId={props.movie.id} />
         </React.Fragment>
       ) : (
