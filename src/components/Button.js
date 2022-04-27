@@ -1,14 +1,15 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 const Button = styled.button`
-  display: block;
-  padding: 10px;
+  background-color: #0077cc;
   border: none;
   border-radius: 5px;
-  font-size: 18px;
   color: #fff;
-  background-color: #0077cc;
   cursor: pointer;
+  display: block;
+  font-size: 18px;
+  margin-top: 5px;
+  padding: 10px;
 
   :hover {
     opacity: 0.8;
@@ -17,6 +18,6 @@ const Button = styled.button`
   :active {
     background-color: #005fa3;
   }
-`;
+`
 
-export default Button;
+export default Button

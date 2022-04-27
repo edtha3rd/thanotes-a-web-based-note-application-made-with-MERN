@@ -1,17 +1,15 @@
-import React from 'react';
+import React from 'react'
 //import required apollo libraries
-import { useQuery, gql } from '@apollo/client';
+import { useQuery } from '@apollo/client'
 //import markdown library
-import ReactMarkdown from 'react-markdown';
 
-import Button from '../components/Button';
-import NoteFeed from "../components/NoteFeed";
-import Note from '../components/Note';
-import { GET_NOTES } from '../gql/query';
+import Button from '../components/Button'
+import MovieFeed from '../components/MovieFeed'
+import { GET_MOVIES } from '../gql/query'
 
 const Home = () => {
   //query hook
-  const { data, loading, error, fetchMore } = useQuery(GET_NOTES);
+  const { data, loading, error, fetchMore } = useQuery(GET_MOVIES)
 
   //if data loading, display loading message
   if (loading) return <p>Loading...</p>
@@ -21,36 +19,37 @@ const Home = () => {
   return (
     //add react fragment to provide a parent element
     <React.Fragment>
-      <NoteFeed notes={data.NoteFeed.notes} />
+      <MovieFeed movies={data.MovieFeed.movies} />
       {/*only display load more button is hasNextPage is true */}
-      {data.NoteFeed.hasNextPage && (
-        <Button 
-        onClick={() => fetchMore({
-          variables: {
-            cursor: data.NoteFeed.cursor
-          },
-          updateQuery: (previousResult, { fetchMoreResult }) => {
-            return {
-              NoteFeed: {
-                cursor: fetchMoreResult.NoteFeed.cursor,
-                hasNextPage: fetchMoreResult.NoteFeed.hasNextPage,
-                //combine the new results and the old
-                notes: [
-                  ...previousResult.NoteFeed.notes,
-                  ...fetchMoreResult.NoteFeed.notes
-                ],
-                __typename: 'NoteFeed'
+      {data.MovieFeed.hasNextPage && (
+        <Button
+          onClick={() =>
+            fetchMore({
+              variables: {
+                cursor: data.MovieFeed.cursor
+              },
+              updateQuery: (previousResult, { fetchMoreResult }) => {
+                return {
+                  MovieFeed: {
+                    cursor: fetchMoreResult.MovieFeed.cursor,
+                    hasNextPage: fetchMoreResult.MovieFeed.hasNextPage,
+                    //combine the new results and the old
+                    movies: [
+                      ...previousResult.MovieFeed.movies,
+                      ...fetchMoreResult.MovieFeed.movies
+                    ],
+                    __typename: 'MovieFeed'
+                  }
+                }
               }
-            };
+            })
           }
-        })
-        }
         >
           Load More
         </Button>
       )}
     </React.Fragment>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home

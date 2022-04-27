@@ -1,55 +1,36 @@
-import React, { useEffect } from 'react';
-import { useMutation, gql } from '@apollo/client';
-//import noteform component
-import NoteForm from '../components/NoteForm';
+import React, { useEffect } from 'react'
+import { useMutation, gql } from '@apollo/client'
+//import movieform component
+import MovieForm from '../components/MovieForm'
 //import query
-import { GET_NOTES, GET_MY_NOTES } from '../gql/query';
+import { GET_MOVIES, GET_MY_MOVIES } from '../gql/query'
+import { NEW_MOVIE } from '../gql/mutation'
 
-//our new note query
-const NEW_NOTE = gql`
-    mutation newNote($content: String!) {
-        newNote(content: $content) {
-            id
-            content
-            createdAt
-            favoriteCount
-            favoritedBy {
-                id
-                username
-            }
-            author {
-                username
-                id
-            }
-        }
+const NewMovie = props => {
+  useEffect(() => {
+    //update document title
+    document.title = 'New Movie - Admin'
+  })
+
+  const [newMovie, { loading, error }] = useMutation(NEW_MOVIE, {
+    //refetch the GET_MOVIES query to update cache
+    refetchQueries: [{ query: GET_MY_MOVIES }, { query: GET_MOVIES }],
+    onCompleted: data => {
+      //when complete, redirect user to movie page
+      props.history.push(`movie/${data.newMovie.id}`)
     }
-`;
+  })
 
-const NewNote = props => {
-    useEffect(() => {
-        //update document title
-        document.title = 'New Note - Thanotes';
-    });
+  return (
+    <React.Fragment>
+      {/*loading message when mutation loading */}
+      {loading && <p>Loading...</p>}
+      {/*if error, display error message */}
+      {error && <p>Error Pushing Movie</p>}
+      {/*the form component, passing mutation data as a prop */}
+      <MovieForm action={newMovie} />
+    </React.Fragment>
+  )
+}
 
-    const [data, { loading, error }] = useMutation(NEW_NOTE, {
-        //refetch the GET_NOTES query to update cache
-        refetchQueries: [{ query: GET_MY_NOTES }, { query: GET_NOTES }],
-        onCompleted: data => {
-            //when complete, redirect user to note page
-            props.history.push(`note/${data.newNote.id}`);
-        }
-    });
-    
-    return (
-        <React.Fragment>
-            {/*loading message when mutation loading */}
-            {loading && <p>Loading...</p>}
-            {/*if error, display error message */}
-            {error && <p>Error saving the note</p>}
-            {/*the form component, passing mutation data as a prop */}
-            <NoteForm action={data} />    
-        </React.Fragment>
-    );
-};
-
-export default NewNote;
+export default NewMovie

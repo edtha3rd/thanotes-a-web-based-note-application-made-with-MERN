@@ -1,6 +1,8 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
+import React from 'react'
+import { Link } from 'react-router-dom'
+import styled from 'styled-components'
+import { useQuery, gql } from '@apollo/client'
+import { GET_ME } from '../gql/query'
 
 const Nav = styled.nav`
   padding: 1em;
@@ -16,7 +18,7 @@ const Nav = styled.nav`
     height: calc(100% - 64px);
     overflow-y: scroll;
   }
-`;
+`
 
 const NavList = styled.ul`
   margin: 0;
@@ -41,9 +43,15 @@ const NavList = styled.ul`
   a:focus {
     color: #0077cc;
   }
-`;
+`
 
 const Navigation = () => {
+  const { data, loading, error } = useQuery(GET_ME)
+  // if the data is loading, display a loading message
+  if (loading) return <p>Loading...</p>
+  // if there is an error fetching the data, display an error message
+  if (error) return <p>Error!</p>
+
   return (
     <Nav>
       <NavList>
@@ -56,32 +64,45 @@ const Navigation = () => {
           </Link>
         </li>
         <li>
-          <Link to="/mynotes">
+          <Link to="/editprofile">
             <span aria-hidden="true" role="img">
-              📓
+              👤
             </span>
-            My Thanotes
+            Edit Profile
           </Link>
         </li>
-        <li>
-          <Link to="/favorites">
-            <span aria-hidden="true" role="img">
-              ❤
-            </span>
-            Favorites
-          </Link>
-        </li>
-        <li>
-          <Link to="/new">
-            <span aria-hidden="true" role="img">
-            📝
-          </span>
-          New Thanote
-          </Link>
-        </li>
+        {data.currentUser.role === 'THEATER' ? (
+          <li>
+            <Link to="/catalog">
+              <span aria-hidden="true" role="img">
+                ❤
+              </span>
+              My Catalog
+            </Link>
+          </li>
+        ) : (
+          <div>
+            <li>
+              <Link to="/mymovies">
+                <span aria-hidden="true" role="img">
+                  📓
+                </span>
+                My Movies
+              </Link>
+            </li>
+            <li>
+              <Link to="/new">
+                <span aria-hidden="true" role="img">
+                  📝
+                </span>
+                New Movie
+              </Link>
+            </li>
+          </div>
+        )}
       </NavList>
     </Nav>
-  );
-};
+  )
+}
 
-export default Navigation;
+export default Navigation

@@ -1,102 +1,110 @@
-import { gql } from '@apollo/client';
+import { gql } from '@apollo/client'
 //central js file to hold all queries
-const GET_NOTES = gql`
-  query NoteFeed($cursor: String){
-    NoteFeed(cursor: $cursor){
-      cursor
-      hasNextPage
-      notes {
+const GET_MOVIES = gql`
+  query MovieFeed {
+    MovieFeed {
+      movies {
         id
-        content
-        createdAt
-        favoriteCount
-        author {
-          username
+        title
+        year
+        poster
+        showingAt {
           id
-          avatar
+          fullName
+          email
+          address
         }
       }
+      mCursor
+      hasMoreMovies
     }
-  }  
-`;
+  }
+`
 
-const GET_NOTE = gql`
-    query note($id: ID!) {
-        note (id: $id) {
-            id
-            createdAt
-            content
-            favoriteCount
-            author {
-                username
-                id
-                avatar
-            }
-        }
+const GET_MOVIE = gql`
+  query Movie($movieId: ID!) {
+    movie(id: $movieId) {
+      id
+      title
+      year
+      poster
+      submittedBy {
+        username
+        id
+      }
     }
-`;
+  }
+`
 
 const IS_LOGGED_IN = gql`
   {
     isLoggedIn @client
   }
-`;
+`
 
-const GET_MY_NOTES = gql`
-  query me {
-    me {
+const GET_MY_MOVIES = gql`
+  query Submissions {
+    submissions {
       id
-      username
-      notes {
+      title
+      year
+      poster
+      showingAt {
+        fullName
         id
-        createdAt
-        content
-        favoriteCount
-        author {
-          username
-          id
-          avatar
-        }
+      }
+      showingAtCount
+    }
+  }
+`
+
+const GET_MY_CATALOG = gql`
+  query Catalog($theaterId: ID!) {
+    catalog(theaterId: $theaterId) {
+      id
+      title
+      year
+      poster
+      submittedBy {
+        username
+        id
       }
     }
   }
-`;
-
-const GET_MY_FAVORITES = gql`
-  query me {
-    me {
-      id
-      username
-      favorites {
-        id
-        createdAt
-        content
-        favoriteCount
-        author {
-          username
-          id
-          avatar
-        }
-      }
-    }
-  }
-`;
+`
 
 const GET_ME = gql`
-  query me {
-    me {
+  query CurrentUser {
+    currentUser {
       id
-      favorites {
+      username
+      email
+      password
+      role
+      fullName
+      phoneNumber
+      address
+      submissions {
         id
+        title
+        year
+        poster
+      }
+      catalogue {
+        id
+        title
+        year
+        poster
       }
     }
   }
-`;
+`
 
-export { 
-  GET_NOTES, 
-  GET_NOTE, 
-  IS_LOGGED_IN, 
-  GET_MY_NOTES, 
-  GET_MY_FAVORITES,
-  GET_ME };
+export {
+  GET_MOVIES,
+  GET_MOVIE,
+  IS_LOGGED_IN,
+  GET_MY_MOVIES,
+  GET_MY_CATALOG,
+  GET_ME
+}
