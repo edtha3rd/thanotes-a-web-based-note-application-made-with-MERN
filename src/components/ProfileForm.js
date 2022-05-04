@@ -22,11 +22,15 @@ const Wrapper = styled.div`
 `
 
 const ProfileForm = props => {
-  const [values, setValues] = useState()
+  const [value, setValues] = useState({
+    address: props.user.address,
+    fullName: props.user.fullName,
+    phoneNumber: props.user.phoneNumber
+  })
 
   const onChange = event => {
     setValues({
-      ...values,
+      ...value,
       [event.target.name]: event.target.value
     })
   }
@@ -37,7 +41,7 @@ const ProfileForm = props => {
           event.preventDefault()
           props.action({
             variables: {
-              ...values
+              ...value
             }
           })
         }}
@@ -47,7 +51,7 @@ const ProfileForm = props => {
           type="text"
           id="address"
           name="address"
-          value={props.user.address}
+          value={value.address}
           onChange={onChange}
         />
         <label htmlFor="fullName">Full Name:</label>
@@ -55,7 +59,7 @@ const ProfileForm = props => {
           type="text"
           id="fullName"
           name="fullName"
-          value={props.user.fullName}
+          value={value.fullName}
           onChange={onChange}
         />
         <label htmlFor="Phone Number">Phone:</label>
@@ -63,7 +67,7 @@ const ProfileForm = props => {
           type="text"
           id="phoneNumber"
           name="phoneNumber"
-          value={props.user.phoneNumber || ''}
+          value={value.phoneNumber}
           onChange={onChange}
         />
         <Button type="submit">Save</Button>

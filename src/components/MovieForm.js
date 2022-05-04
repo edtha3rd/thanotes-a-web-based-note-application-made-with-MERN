@@ -34,6 +34,8 @@ const MovieForm = props => {
   const [value, setValue] = useState({
     title: props.movie ? props.movie.title : '',
     year: props.movie ? props.movie.year : '',
+    synopsis: props.movie ? props.movie.synopsis : '',
+    rating: props.movie ? props.movie.rating : '',
     poster: props.movie ? props.movie.poster : ''
   })
 

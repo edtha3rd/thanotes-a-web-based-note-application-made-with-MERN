@@ -64,6 +64,12 @@ const DELETE_MOVIE = gql`
   }
 `
 
+const DELETE_THEATER = gql`
+  mutation Mutation($deleteUserId: ID) {
+    deleteUser(id: $deleteUserId)
+  }
+`
+
 const TOGGLE_FAVORITE = gql`
   mutation toggleFavorite($id: ID!) {
     toggleFavorite(id: $id) {
@@ -91,4 +97,11 @@ const SIGN_UP = gql`
   }
 `
 
-export { EDIT_MOVIE, DELETE_MOVIE, NEW_MOVIE, SIGN_UP, TOGGLE_FAVORITE }
+export {
+  EDIT_MOVIE,
+  DELETE_MOVIE,
+  DELETE_THEATER,
+  NEW_MOVIE,
+  SIGN_UP,
+  TOGGLE_FAVORITE
+}

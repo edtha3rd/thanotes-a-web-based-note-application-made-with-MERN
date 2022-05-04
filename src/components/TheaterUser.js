@@ -2,11 +2,10 @@ import React from 'react'
 import { useQuery, gql } from '@apollo/client'
 import { Link } from 'react-router-dom'
 import { GET_ME } from '../gql/query'
-import FavoriteMovie from './FavoriteMovie'
-import DeleteMovie from './DeleteMovie'
+import DeleteTheater from './DeleteTheater'
 import ButtonAsLink from './ButtonAsLink'
 
-const MovieUser = props => {
+const TheaterUser = props => {
   const { loading, error, data } = useQuery(GET_ME)
   // if the data is loading, display a loading message
   if (loading) return <p>Loading...</p>
@@ -17,17 +16,13 @@ const MovieUser = props => {
     <React.Fragment>
       {data.currentUser.role === 'ADMIN' ? (
         <React.Fragment>
-          <Link to={`/edit/${props.movie.id}`}>Edit </Link>{' '}
-          <DeleteMovie movieId={props.movie.id} />
+          <DeleteTheater theaterId={props.theater.id} />
         </React.Fragment>
       ) : (
-        <React.Fragment>
-          <FavoriteMovie me={data.currentUser} movieId={props.movie.id} />
-          <br />
-        </React.Fragment>
+        <React.Fragment></React.Fragment>
       )}
     </React.Fragment>
   )
 }
 
-export default MovieUser
+export default TheaterUser

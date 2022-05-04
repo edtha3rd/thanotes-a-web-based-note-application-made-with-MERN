@@ -68,9 +68,11 @@ const GET_MY_CATALOG = gql`
   query Catalog($theaterId: ID!) {
     catalog(theaterId: $theaterId) {
       id
+      poster
+      rating
+      synopsis
       title
       year
-      poster
       submittedBy {
         username
         id
@@ -103,6 +105,8 @@ const GET_ME = gql`
         title
         year
         poster
+        rating
+        synopsis
       }
       myReservations {
         id
@@ -118,11 +122,33 @@ const GET_ME = gql`
   }
 `
 
+const GET_THEATERS = gql`
+  query Theaters {
+    theaters {
+      username
+      id
+      email
+      password
+      role
+      fullName
+      address
+      phoneNumber
+      catalogue {
+        id
+        title
+        year
+        poster
+      }
+    }
+  }
+`
+
 export {
   GET_MOVIES,
   GET_MOVIE,
   IS_LOGGED_IN,
   GET_MY_MOVIES,
   GET_MY_CATALOG,
-  GET_ME
+  GET_ME,
+  GET_THEATERS
 }

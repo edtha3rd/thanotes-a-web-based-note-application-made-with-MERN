@@ -10,11 +10,12 @@ const EditMovie = props => {
   //store id found in url as a variable
   const id = props.match.params.id
   //query hook, passing the id value as a variable
-  const { loading, error, data } = useQuery(GET_MOVIE, {
+  const { loading, error, data, refetch } = useQuery(GET_MOVIE, {
     variables: { movieId: id }
   })
   //define our mutation
   const [editMovie] = useMutation(EDIT_MOVIE, {
+    refetchQueries: refetch,
     onCompleted: () => {
       props.history.push(`/movie/${id}`)
     }

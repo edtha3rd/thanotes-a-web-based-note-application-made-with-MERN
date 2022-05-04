@@ -12,11 +12,17 @@ const DeleteMovie = props => {
       id: props.movieId
     },
     refetchQueries: [{ query: GET_MY_MOVIES, GET_MOVIES }],
-    onCompleted: data => {
+    onCompleted: () => {
       props.history.push('/mymovies')
     }
   })
-  return <ButtonAsLink onClick={deleteMovie}> Delete Movie </ButtonAsLink>
+  return (
+    <div>
+      <ButtonAsLink onClick={deleteMovie}>⚠️ Delete Movie </ButtonAsLink>
+      <br />
+      <span style={{ color: 'red' }}>(This action is not reversible)</span>
+    </div>
+  )
 }
 
 export default withRouter(DeleteMovie)

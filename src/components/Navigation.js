@@ -116,6 +116,14 @@ const Navigation = () => {
                 New Movie
               </Link>
             </li>
+            <li>
+              <Link to="/theaters">
+                <span aria-hidden="true" role="img">
+                  📽️
+                </span>
+                Theaters
+              </Link>
+            </li>
           </div>
         )}
       </NavList>
