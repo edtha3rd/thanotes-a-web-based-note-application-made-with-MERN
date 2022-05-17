@@ -19,7 +19,7 @@ const ReservationFeed = ({ data }) => {
       <Header> Your Reservations </Header>
       {data.map(reservation => {
         return (
-          <Card key={reservation}>
+          <Card key={reservation.id}>
             Reserved By: {reservation.reservedBy.email} <br />
             Seats:{' '}
             {reservation.seat.map(seat => {

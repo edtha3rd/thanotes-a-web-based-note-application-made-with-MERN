@@ -1,5 +1,28 @@
 import { gql } from '@apollo/client'
 //central js file to hold all queries
+const CHECK_RESERVATION = gql`
+  query CheckReservation($confirmationCode: String) {
+    checkReservation(confirmationCode: $confirmationCode) {
+      id
+      seat
+      totalPrice
+      reservedBy {
+        username
+        email
+      }
+      sessionDetails {
+        movie {
+          title
+          year
+        }
+        location {
+          fullName
+        }
+      }
+    }
+  }
+`
+
 const GET_MOVIES = gql`
   query MovieFeed {
     MovieFeed {
@@ -144,6 +167,7 @@ const GET_THEATERS = gql`
 `
 
 export {
+  CHECK_RESERVATION,
   GET_MOVIES,
   GET_MOVIE,
   IS_LOGGED_IN,

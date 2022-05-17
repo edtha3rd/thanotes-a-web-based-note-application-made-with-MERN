@@ -16,7 +16,7 @@ const Nav = styled.nav`
     position: fixed;
     width: 220px;
     height: calc(100% - 64px);
-    overflow-y: scroll;
+    overflow-y: none;
   }
 `
 
@@ -95,6 +95,14 @@ const Navigation = () => {
                   🎟️
                 </span>
                 Reservations
+              </Link>
+            </li>
+            <li>
+              <Link to="/checkreservation">
+                <span aria-hidden="true" role="img">
+                  ❓
+                </span>
+                Check Reservation
               </Link>
             </li>
           </div>
