@@ -9,11 +9,16 @@ const MoviePage = props => {
   //store id found in url as a variable
   const id = props.match.params.id
   //query hook, passing the id value as a variable
-  const { loading, error, data } = useQuery(GET_MOVIE, { variables: { id } })
+  const { loading, error, data } = useQuery(GET_MOVIE, {
+    variables: { id }
+  })
+  React.useEffect(() => {
+    document.title = data ? `${data.movie.title} - Tickets!` : 'Home - Tickets!'
+  })
 
   if (loading) return <p>Loading...</p>
   if (error) return <p>Error! Movie not found </p>
-
+  console.log(document.title)
   return <Movie movie={data.movie} />
 }
 

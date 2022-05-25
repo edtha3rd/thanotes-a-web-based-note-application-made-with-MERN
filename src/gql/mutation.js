@@ -70,11 +70,11 @@ const DELETE_THEATER = gql`
   }
 `
 
-const TOGGLE_FAVORITE = gql`
-  mutation toggleFavorite($id: ID!) {
-    toggleFavorite(id: $id) {
+const TOGGLE_CATALOG = gql`
+  mutation toggleCatalogue($id: ID!) {
+    toggleCatalogue(id: $id) {
       id
-      favoriteCount
+      showingAtCount
     }
   }
 `
@@ -103,5 +103,5 @@ export {
   DELETE_THEATER,
   NEW_MOVIE,
   SIGN_UP,
-  TOGGLE_FAVORITE
+  TOGGLE_CATALOG
 }

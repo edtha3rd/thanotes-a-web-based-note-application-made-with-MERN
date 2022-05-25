@@ -33,6 +33,7 @@ const GET_MOVIES = gql`
         poster
         synopsis
         rating
+        showingAtCount
         showingAt {
           id
           fullName
@@ -55,6 +56,7 @@ const GET_MOVIE = gql`
       poster
       synopsis
       rating
+      showingAtCount
       submittedBy {
         username
         id

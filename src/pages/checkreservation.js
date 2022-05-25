@@ -34,6 +34,9 @@ const Tick = styled.img`
 `
 
 function checkreservation() {
+  React.useEffect(() => {
+    document.title = 'Check Reservation - Tickets!'
+  })
   const [code, setCode] = useState('')
 
   const onChange = event => {
@@ -47,8 +50,7 @@ function checkreservation() {
     }
   )
 
-  let reservation = data ? data.checkReservation : []
-  console.log(reservation)
+  let reservation = data ? data.checkReservation : {}
   if (loading) return <p>Loading...</p>
   if (error) return <p>{error.message}</p>
   return (

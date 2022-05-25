@@ -40,7 +40,10 @@ const IS_LOGGED_IN = gql`
 `
 
 const Layout = ({ children }) => {
-  const { data } = useQuery(IS_LOGGED_IN)
+  const { data, error, loading } = useQuery(IS_LOGGED_IN)
+
+  if (loading) return <p>Loading</p>
+  if (error) return <p>{''}</p>
 
   return (
     <React.Fragment>

@@ -5,6 +5,9 @@ import { GET_ME } from '../gql/query'
 import ReservationFeed from '../components/ReservationFeed'
 
 const Reservation = () => {
+  React.useEffect(() => {
+    document.title = 'Reservations - Tickets!'
+  })
   const { data, error, loading } = useQuery(GET_ME)
 
   if (loading) return <p>Loading</p>

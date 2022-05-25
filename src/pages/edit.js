@@ -7,6 +7,9 @@ import { GET_MOVIE, GET_ME } from '../gql/query'
 import { EDIT_MOVIE } from '../gql/mutation'
 
 const EditMovie = props => {
+  React.useEffect(() => {
+    document.title = 'Edit Movie - Tickets!'
+  })
   //store id found in url as a variable
   const id = props.match.params.id
   //query hook, passing the id value as a variable
