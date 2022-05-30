@@ -5,6 +5,13 @@ import MovieForm from '../components/MovieForm'
 //import query
 import { GET_MOVIES, GET_MY_MOVIES } from '../gql/query'
 import { NEW_MOVIE } from '../gql/mutation'
+import styled from 'styled-components'
+
+const Head = styled.p`
+  font-size: 18px;
+  font-weight: bold;
+  text-decoration: underline;
+`
 
 const NewMovie = props => {
   useEffect(() => {
@@ -28,6 +35,7 @@ const NewMovie = props => {
       {/*if error, display error message */}
       {error && <p>Error Pushing Movie</p>}
       {/*the form component, passing mutation data as a prop */}
+      <Head>New Movie</Head>
       <MovieForm action={newMovie} />
     </React.Fragment>
   )

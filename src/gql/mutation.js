@@ -86,13 +86,15 @@ const SIGN_UP = gql`
     $password: String!
     $fullName: String
     $address: String
+    $role: String
   ) {
     signUp(
-      username: $username
-      email: $email
-      password: $password
-      fullName: $fullName
       address: $address
+      email: $email
+      fullName: $fullName
+      password: $password
+      role: $role
+      username: $username
     )
   }
 `
