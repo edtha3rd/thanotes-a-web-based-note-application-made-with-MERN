@@ -28,6 +28,11 @@ const UserForm = props => {
   const [values, setValues] = useState()
   //update the state when a user types in the form
   const onChange = event => {
+    if (event.target.name === 'password') {
+      if (event.target.value.length < 8) {
+        return
+      }
+    }
     setValues({
       ...values,
       [event.target.name]: event.target.value
@@ -66,6 +71,7 @@ const UserForm = props => {
           placeholder="Password"
           onChange={onChange}
         />
+        <span>Password must be at least 8 characters</span>
         {props.formType === 'signup' && (
           <React.Fragment>
             <label htmlFor="username">Username:</label>
