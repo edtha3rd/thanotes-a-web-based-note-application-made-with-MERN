@@ -87,6 +87,7 @@ const SIGN_UP = gql`
     $fullName: String
     $address: String
     $role: String
+    $phoneNumber: String
   ) {
     signUp(
       address: $address
@@ -95,6 +96,7 @@ const SIGN_UP = gql`
       password: $password
       role: $role
       username: $username
+      phoneNumber: $phoneNumber
     )
   }
 `

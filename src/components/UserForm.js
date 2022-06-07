@@ -28,11 +28,11 @@ const UserForm = props => {
   const [values, setValues] = useState()
   //update the state when a user types in the form
   const onChange = event => {
-    if (event.target.name === 'password') {
-      if (event.target.value.length < 8) {
-        return
-      }
-    }
+    // if (event.target.name === 'password' && props.formType === 'signup') {
+    //   if (event.target.value.length < 8) {
+    //     return
+    //   }
+    // }
     setValues({
       ...values,
       [event.target.name]: event.target.value
